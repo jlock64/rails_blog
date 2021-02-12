@@ -30,10 +30,6 @@
     <li><a href="mailto:hey@mackenziechild.me">Email</a></li>
   </ul>
 
-  <% if !user_signed_in? %>
-    <p class="sign_in">Admin Login</p>
-  <% end %>
-
 </div>
 
 <div id="main_content">
@@ -49,7 +45,14 @@
     <% if user_signed_in? %>
       <div class="buttons">
         <button class="button"><%= link_to "New Post", new_post_path %></button>
-        <button class="button">Log Out</button>
+        <button class="button"><%= link_to "Log Out", destroy_user_session_path, method: :delete %></button>
+      </div>
+    <% end %>
+
+    <% if !user_signed_in? %>
+      <div class="buttons">
+        <button class="button"><%= link_to "Login", new_user_session_path %></button>
+        <button class="button"><%= link_to "Sign Up", new_user_registration_path %></button>
       </div>
     <% end %>
   </div>
